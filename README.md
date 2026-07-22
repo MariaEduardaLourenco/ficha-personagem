@@ -23,7 +23,7 @@ Ficha de personagem interativa para RPG, com funcionalidade de exportação para
 
 ### Acesse Online
 
-O projeto está disponível em: https://github.com/MariaEduardaLourenco/ficha-personagem
+O projeto está disponível em: https://MariaEduardaLourenco.github.io/ficha-personagem/
 
 ### Uso Local
 

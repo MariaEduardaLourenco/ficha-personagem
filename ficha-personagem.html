@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de personagem</title>
+    <link rel="stylesheet" href="ficha-personagem.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container-geral" id="ficha">
+        <label for="container-geral">Dadinhos - ficha de personagem</label>
+        <div class="container-formulario">
+            <form id="formulario">
+                <div class="secao_p">
+                    <div class="nome">
+                        <label for="nome">Nome</label><br>
+                        <input type="text" name="nome" id="nome" required><br>
+                    </div>
+
+                    <div class="nivel">
+                        <label for="nivel">Nível</label>
+                        <select name="nivel" id="nivel" required>
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                    <div class="imagem">
+                        <img src="contorno-do-cubo-de-dados.png" alt="dados_ficha-personagem">
+                        <img src="contorno-do-cubo-de-dados.png" alt="dados_ficha-personagem">
+                    </div>
+                </div>
+
+                <div class="secao_s">
+                    <div class="container-pv">
+                        <div class="protecao">
+                            <label for="protecao">Proteção</label>
+                            <input type="number" name="protecao" id="protecao" placeholder="0">
+                        </div>
+                        <div class="vida">
+                            <label>Vida</label>
+                            <div class="vidas">
+                                <input type="number" name="vida_atual" id="vida_atual" placeholder="0">
+                                <input type="number" name="vida_total" id="vida_total" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="atributo">
+                        <label>Atributos</label>
+                        <div class="atributos">
+                            <div class="atributo-item">
+                                <label for="forca">Força</label>
+                                <input type="number" name="forca" id="forca" placeholder="0">
+                            </div>
+                            <div class="atributo-item">
+                                <label for="carisma">Carisma</label>
+                                <input type="number" name="carisma" id="carisma" placeholder="0">
+                            </div>
+                            <div class="atributo-item">
+                                <label for="inteligencia">Inteligência</label>
+                                <input type="number" name="inteligencia" id="inteligencia" placeholder="0">
+                            </div>
+                            <div class="atributo-item">
+                                <label for="velocidade">Velocidade</label>
+                                <input type="number" name="velocidade" id="velocidade" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="foto">
+                        <label for="foto">Personagem</label>
+                        <input type="file" name="foto" id="foto" accept="image/png, image/jpeg, image/pdf">
+                    </div>
+                </div>
+
+                <div class="secao_t">
+                    <div class="descricao">
+                        <label for="descricao">Descrição</label>
+                        <textarea name="descricao" id="descricao" placeholder="Gosta de coisas brilhantes..."></textarea>
+                    </div>
+                    <div class="equipamento">
+                        <label for="equipamento">Equipamento</label>
+                        <div class="area">
+                            <textarea name="equipamento" id="equipamento" placeholder="1. Capacete super legal...&#10;2. Super espada...&#10;3. Poção de vida...&#10;4. Escudo mágico..."></textarea>
+                            
+                            <div class="equipamento-selects">
+                                <div class="select-item">
+                                    <select name="equipamento_1" id="equipamento_1" onchange="selecionarIcone(1)">
+                                        <option value="">Slot</option>
+                                    </select>
+                                </div>
+                                <div class="select-item">
+                                    <select name="equipamento_2" id="equipamento_2" onchange="selecionarIcone(2)">
+                                        <option value="">Slot</option>
+                                    </select>
+                                </div>
+                                <div class="select-item">
+                                    <select name="equipamento_3" id="equipamento_3" onchange="selecionarIcone(3)">
+                                        <option value="">Slot</option>
+                                    </select>
+                                </div>
+                                <div class="select-item">
+                                    <select name="equipamento_4" id="equipamento_4" onchange="selecionarIcone(4)">
+                                        <option value="">Slot</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+
+                <button type="button" onclick="gerarPDF()">Criar personagem</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    const iconesDisponiveis = [
+        { nome: 'Amuleto', arquivo: 'amuleto.png' },
+        { nome: 'Baralho', arquivo: 'baralho.png' },
+        { nome: 'Carvão', arquivo: 'carvao.png' },
+        { nome: 'Corda', arquivo: 'corda.png' },
+        { nome: 'Escudo', arquivo: 'escudo.png' },
+        { nome: 'Gaze', arquivo: 'gaze.png' },
+        { nome: 'Isqueiro', arquivo: 'mais-leve.png' },
+        { nome: 'Martelo', arquivo: 'martelo.png' },
+        { nome: 'Pá', arquivo: 'pa.png' },
+        { nome: 'Poção P', arquivo: 'pocao-magica.png' },
+        { nome: 'Espada', arquivo: 'espada.png' },
+        { nome: 'Mapa', arquivo: 'mapa.png' },
+        { nome: 'Cruz', arquivo: 'cruz.png' },
+        { nome: 'Licor', arquivo: 'licor.png' },
+        { nome: 'Espelho', arquivo: 'espelho.png' },
+        { nome: 'Pão', arquivo: 'saco-de-pao.png' }
+    ];
+
+    function popularSelects() {
+        for (let i = 1; i <= 4; i++) {
+            const select = document.getElementById(`equipamento_${i}`);
+            
+            iconesDisponiveis.forEach(icone => {
+                const option = document.createElement('option');
+                option.value = icone.arquivo;
+                option.textContent = icone.nome;
+                select.appendChild(option);
+            });
+        }
+    }
+
+    function selecionarIcone(id) {
+        const select = document.getElementById(`equipamento_${id}`);
+        const arquivo = select.value;
+        
+        const container = select.parentElement;
+        const existingImg = container.querySelector('.icone-preview');
+        if (existingImg) {
+            existingImg.remove();
+        }
+        
+        if (arquivo) {
+            const icone = iconesDisponiveis.find(item => item.arquivo === arquivo);
+            if (icone) {
+                const img = document.createElement('img');
+                img.src = `icones/${icone.arquivo}`;
+                img.style.width = '24px';
+                img.style.height = '24px';
+                img.style.objectFit = 'contain';
+                img.style.position = 'absolute';
+                img.style.left = '8px';
+                img.style.top = '50%';
+                img.style.transform = 'translateY(-50%)';
+                img.style.pointerEvents = 'none';
+                img.className = 'icone-preview';
+                
+                container.style.position = 'relative';
+                container.appendChild(img);
+            }
+        }
+    }
+
+    document.getElementById('foto').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fotoDiv = document.querySelector('.foto');
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.minHeight = '200px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '3px';
+                img.style.border = '3px solid #6E6C67';
+                img.style.boxSizing = 'border-box';
+                img.style.flex = '1';
+                
+                const label = fotoDiv.querySelector('label');
+                fotoDiv.innerHTML = '';
+                fotoDiv.appendChild(label);
+                fotoDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function gerarPDF() {
+        const btn = document.querySelector('button');
+        const textoOriginal = btn.textContent;
+        
+        btn.textContent = 'Preparando PDF...';
+        btn.disabled = true;
+        
+        document.body.classList.add('exportando-pdf');
+        
+        setTimeout(() => {
+            window.print();
+            
+            setTimeout(() => {
+                btn.textContent = textoOriginal;
+                btn.disabled = false;
+                document.body.classList.remove('exportando-pdf');
+            }, 1000);
+        }, 300);
+    }
+
+    document.addEventListener('DOMContentLoaded', popularSelects);
+</script>
+</body>
+</html>

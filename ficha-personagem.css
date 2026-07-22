@@ -10,6 +10,9 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+.habilidade input{
+    min-height: 40px;
+}
 
 .container-geral {
     width: 595px;
@@ -167,19 +170,24 @@ select::-ms-expand {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 10px;
 }
 
 .atributo-item label {
     flex: 1;
     text-align: left;
     margin-bottom: 0;
+    font-weight: 600;
+    font-size: 14px;
 }
 
-.atributo-item input {
-    max-width: 50px;
+.atributo-item select {
+    max-width: 60px;
     min-height: 35px;
     text-align: center;
     flex-shrink: 0;
+    padding: 4px 6px;
+    font-size: 14px;
 }
 
 .secao_s {
@@ -189,9 +197,25 @@ select::-ms-expand {
 }
 
 .container-pv {
-    flex: 1;
+    flex: 2;
 }
-
+.habilidades{
+    display: flex;
+    gap: 5px;
+    text-align: center;
+}
+.habilidades .habilidade_tipo{
+    flex: 3;
+    text-align: center;
+}
+.habilidades .h_dado{
+    flex: 1;
+    text-align: center;
+}
+.habilidades select {
+    width: 100%;
+    text-align: center;
+}
 .atributo {
     flex: 3;
 }
@@ -246,6 +270,40 @@ select::-ms-expand {
 .vidas input {
     text-align: center;
     flex: 1;
+}
+
+.habilidade {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.habilidade label {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.habilidade select {
+    min-height: 32px;
+    padding: 4px 8px;
+    font-size: 13px;
+    border: 3px solid #6E6C67;
+    border-radius: 3px;
+    background: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #6E6C67;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.habilidade select:focus {
+    border-color: #8A8A80;
+    outline: none;
 }
 
 .secao_t {
@@ -415,10 +473,9 @@ textarea:focus::placeholder {
 
 .exportando-pdf button,
 .exportando-pdf input[type="submit"] {
-    display: none ;
+    display: none;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media screen and (max-width: 640px) {
     body {
         padding: 5px;
@@ -547,9 +604,19 @@ textarea:focus::placeholder {
         min-height: 130px;
     }
 
-    .atributo-item input {
-        max-width: 50px;
-        min-height: 35px;
+    .atributo-item select {
+        max-width: 55px;
+        min-height: 32px;
+        font-size: 13px;
+    }
+
+    .atributo-item label {
+        font-size: 13px;
+    }
+
+    .habilidade select {
+        font-size: 12px;
+        min-height: 30px;
     }
 
     .vidas input {
@@ -574,9 +641,20 @@ textarea:focus::placeholder {
         grid-template-columns: 1fr 1fr;
     }
 
-    .atributo-item input {
-        max-width: 45px;
-        min-height: 32px;
+    .atributo-item select {
+        max-width: 50px;
+        min-height: 30px;
+        font-size: 12px;
+    }
+
+    .atributo-item label {
+        font-size: 12px;
+    }
+
+    .habilidade select {
+        font-size: 11px;
+        min-height: 28px;
+        padding: 3px 6px;
     }
 
     .foto input {
@@ -644,180 +722,180 @@ textarea:focus::placeholder {
 
 @media print {
     * {
-        box-sizing: border-box ;
+        box-sizing: border-box;
     }
     
     body {
-        background-color: #FEFFE0 ;
-        padding: 0 ;
-        margin: 0 ;
-        display: flex ;
-        justify-content: center ;
-        align-items: center ;
-        min-height: 100vh ;
+        background-color: #FEFFE0;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
     }
     
     .container-geral {
-        width: 595px ;
-        height: 842px ;
-        padding: 0 ;
-        margin: 0 auto ;
-        display: flex ;
-        flex-direction: column ;
-        overflow: hidden ;
-        transform: scale(1) ;
+        width: 595px;
+        height: 842px;
+        padding: 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: scale(1);
     }
     
     .container-formulario {
-        display: flex ;
-        flex: 1 ;
-        width: 100% ;
-        overflow: hidden ;
+        display: flex;
+        flex: 1;
+        width: 100%;
+        overflow: hidden;
     }
     
     form {
-        width: 100% ;
-        display: flex ;
-        flex-direction: column ;
-        flex: 1 ;
-        overflow: hidden ;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
     }
     
     textarea {
-        overflow: auto ;
-        height: 100% ;
-        min-height: 0 ;
-        max-height: none ;
-        resize: none ;
-        border: 2px solid #6E6C67 ;
-        word-wrap: break-word ;
-        white-space: pre-wrap ;
-        scrollbar-width: none ;
-        -ms-overflow-style: none ;
+        overflow: auto;
+        height: 100%;
+        min-height: 0;
+        max-height: none;
+        resize: none;
+        border: 2px solid #6E6C67;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
     
     textarea::-webkit-scrollbar {
-        display: none ;
-        width: 0 ;
-        height: 0 ;
+        display: none;
+        width: 0;
+        height: 0;
     }
     
     .foto img {
-        width: 100% ;
-        height: 100% ;
-        min-height: 150px ;
-        object-fit: cover ;
-        border: 2px solid #6E6C67 ;
-        border-radius: 3px ;
+        width: 100%;
+        height: 100%;
+        min-height: 150px;
+        object-fit: cover;
+        border: 2px solid #6E6C67;
+        border-radius: 3px;
     }
     
     .foto {
-        flex: 2 ;
-        display: flex ;
-        flex-direction: column ;
-        overflow: hidden ;
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
     
     .descricao {
-        display: flex ;
-        flex-direction: column ;
-        flex: 1 ;
-        overflow: hidden ;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
     }
     
     .descricao textarea {
-        flex: 1 ;
-        min-height: 0 ;
-        height: 100% ;
+        flex: 1;
+        min-height: 0;
+        height: 100%;
     }
     
     .equipamento {
-        display: flex ;
-        flex-direction: column ;
-        flex: 1 ;
-        overflow: hidden ;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
     }
     
     .area {
-        display: flex ;
-        flex-direction: column ;
-        flex: 1 ;
-        overflow: hidden ;
-        border: 2px solid #6E6C67 ;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+        border: 2px solid #6E6C67;
     }
     
     .equipamento textarea {
-        flex: 1 ;
-        min-height: 0 ;
-        height: 100% ;
+        flex: 1;
+        min-height: 0;
+        height: 100%;
     }
     
     button,
     input[type="submit"],
     .no-print {
-        display: none ;
+        display: none;
     }
     
     .secao_p {
-        display: flex ;
-        gap: 20px ;
-        align-items: stretch ;
-        width: 100% ;
+        display: flex;
+        gap: 20px;
+        align-items: stretch;
+        width: 100%;
     }
     
     .secao_s {
-        display: flex ;
-        gap: 10px ;
-        flex: 0 0 auto ;
-        width: 100% ;
+        display: flex;
+        gap: 10px;
+        flex: 0 0 auto;
+        width: 100%;
     }
     
     .secao_t {
-        display: grid ;
-        grid-template-columns: 1fr 1fr ;
-        gap: 20px ;
-        width: 100% ;
-        flex: 1 ;
-        margin-top: 10px ;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        width: 100%;
+        flex: 1;
+        margin-top: 10px;
     }
     
     .atributos {
-        border: 2px solid #6E6C67 ;
-        padding: 20px ;
-        min-height: 150px ;
+        border: 2px solid #6E6C67;
+        padding: 20px;
+        min-height: 150px;
     }
     
     .equipamento-selects {
-        display: grid ;
-        grid-template-columns: 1fr 1fr ;
-        gap: 8px ;
-        margin-top: 8px ;
-        flex-shrink: 0 ;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
+        flex-shrink: 0;
     }
     
     input {
-        border: 2px solid #6E6C67 ;
-        background: #FEFFE0 ;
-        min-height: 35px ;
+        border: 2px solid #6E6C67;
+        background: #FEFFE0;
+        min-height: 35px;
     }
     
     select {
-        border: 2px solid #6E6C67 ;
-        background: #FEFFE0 ;
-        min-height: 40px ;
+        border: 2px solid #6E6C67;
+        background: #FEFFE0;
+        min-height: 40px;
     }
     
     .select-item select {
-        padding-left: 40px ;
+        padding-left: 40px;
     }
     
     label[for="container-geral"] {
-        display: block ;
-        margin-bottom: 10px ;
+        display: block;
+        margin-bottom: 10px;
     }
     
     .container-geral > * {
-        max-width: 100% ;
-        overflow: hidden ;
+        max-width: 100%;
+        overflow: hidden;
     }
 }

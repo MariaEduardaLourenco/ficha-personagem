@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="container-geral" id="ficha">
@@ -39,35 +41,67 @@
                     <div class="container-pv">
                         <div class="protecao">
                             <label for="protecao">Proteção</label>
-                            <input type="number" name="protecao" id="protecao" placeholder="0">
+                            <input type="number" name="protecao" id="protecao" placeholder="1" max="11" min="1">
                         </div>
                         <div class="vida">
                             <label>Vida</label>
                             <div class="vidas">
-                                <input type="number" name="vida_atual" id="vida_atual" placeholder="0">
-                                <input type="number" name="vida_total" id="vida_total" placeholder="0">
+                                <input type="number" name="vida_atual" id="vida_atual" placeholder="0" max="30" title="vida atual" required>
+                                <input type="number" name="vida_total" id="vida_total" placeholder="20" max="30" min="20" title="vida total" required>
                             </div>
+                        </div>
+                        <div class="habilidade">
+                            <label>Habilidade</label>
+                            <div class="habilidades">
+                                <select class="habilidade_tipo" name="habilidade_tipo" id="habilidade_tipo" required>
+                                    <option value="dano" selected>Dano</option>
+                                    <option value="cura">Cura</option>
+                                    <option value="movimento">Movimento</option>
+                                    <option value="controle">Controle</option>
+                                </select>
+                                <select class="h_dado" name="h_dado" id="h_dado" required>
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <input type="text" name="habilidade_nome" id="habilidade_nome" title="Nome da habilidade" placeholder="Bola de Fogo...">
                         </div>
                     </div>
 
                     <div class="atributo">
                         <label>Atributos</label>
-                        <div class="atributos">
+                        <div class="atributos" title="1 ponto padrão + 3 pontos extras para distribuir; não podem ser maiores que 3.">
                             <div class="atributo-item">
                                 <label for="forca">Força</label>
-                                <input type="number" name="forca" id="forca" placeholder="0">
+                                <select name="forca" id="forca" required>
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                             <div class="atributo-item">
                                 <label for="carisma">Carisma</label>
-                                <input type="number" name="carisma" id="carisma" placeholder="0">
+                                <select name="carisma" id="carisma" required>
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                             <div class="atributo-item">
                                 <label for="inteligencia">Inteligência</label>
-                                <input type="number" name="inteligencia" id="inteligencia" placeholder="0">
+                                <select name="inteligencia" id="inteligencia" required>
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                             <div class="atributo-item">
                                 <label for="velocidade">Velocidade</label>
-                                <input type="number" name="velocidade" id="velocidade" placeholder="0">
+                                <select name="velocidade" id="velocidade" required>
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -118,118 +152,6 @@
             </form>
         </div>
     </div>
-
-<script>
-    const iconesDisponiveis = [
-        { nome: 'Amuleto', arquivo: 'amuleto.png' },
-        { nome: 'Baralho', arquivo: 'baralho.png' },
-        { nome: 'Carvão', arquivo: 'carvao.png' },
-        { nome: 'Corda', arquivo: 'corda.png' },
-        { nome: 'Escudo', arquivo: 'escudo.png' },
-        { nome: 'Gaze', arquivo: 'gaze.png' },
-        { nome: 'Isqueiro', arquivo: 'mais-leve.png' },
-        { nome: 'Martelo', arquivo: 'martelo.png' },
-        { nome: 'Pá', arquivo: 'pa.png' },
-        { nome: 'Poção P', arquivo: 'pocao-magica.png' },
-        { nome: 'Espada', arquivo: 'espada.png' },
-        { nome: 'Mapa', arquivo: 'mapa.png' },
-        { nome: 'Cruz', arquivo: 'cruz.png' },
-        { nome: 'Licor', arquivo: 'licor.png' },
-        { nome: 'Espelho', arquivo: 'espelho.png' },
-        { nome: 'Pão', arquivo: 'saco-de-pao.png' }
-    ];
-
-    function popularSelects() {
-        for (let i = 1; i <= 4; i++) {
-            const select = document.getElementById(`equipamento_${i}`);
-            
-            iconesDisponiveis.forEach(icone => {
-                const option = document.createElement('option');
-                option.value = icone.arquivo;
-                option.textContent = icone.nome;
-                select.appendChild(option);
-            });
-        }
-    }
-
-    function selecionarIcone(id) {
-        const select = document.getElementById(`equipamento_${id}`);
-        const arquivo = select.value;
-        
-        const container = select.parentElement;
-        const existingImg = container.querySelector('.icone-preview');
-        if (existingImg) {
-            existingImg.remove();
-        }
-        
-        if (arquivo) {
-            const icone = iconesDisponiveis.find(item => item.arquivo === arquivo);
-            if (icone) {
-                const img = document.createElement('img');
-                img.src = `icones/${icone.arquivo}`;
-                img.style.width = '24px';
-                img.style.height = '24px';
-                img.style.objectFit = 'contain';
-                img.style.position = 'absolute';
-                img.style.left = '8px';
-                img.style.top = '50%';
-                img.style.transform = 'translateY(-50%)';
-                img.style.pointerEvents = 'none';
-                img.className = 'icone-preview';
-                
-                container.style.position = 'relative';
-                container.appendChild(img);
-            }
-        }
-    }
-
-    document.getElementById('foto').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const fotoDiv = document.querySelector('.foto');
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.minHeight = '200px';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '3px';
-                img.style.border = '3px solid #6E6C67';
-                img.style.boxSizing = 'border-box';
-                img.style.flex = '1';
-                
-                const label = fotoDiv.querySelector('label');
-                fotoDiv.innerHTML = '';
-                fotoDiv.appendChild(label);
-                fotoDiv.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    function gerarPDF() {
-        const btn = document.querySelector('button');
-        const textoOriginal = btn.textContent;
-        
-        btn.textContent = 'Preparando PDF...';
-        btn.disabled = true;
-        
-        document.body.classList.add('exportando-pdf');
-        
-        setTimeout(() => {
-            window.print();
-            
-            setTimeout(() => {
-                btn.textContent = textoOriginal;
-                btn.disabled = false;
-                document.body.classList.remove('exportando-pdf');
-            }, 1000);
-        }, 300);
-    }
-
-    document.addEventListener('DOMContentLoaded', popularSelects);
-</script>
+    <script src="ficha-personagem.js"></script>
 </body>
 </html>

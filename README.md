@@ -33,7 +33,7 @@ O projeto está disponível em: https://MariaEduardaLourenco.github.io/ficha-per
 git clone https://github.com/seu-usuario/ficha-personagem.git
 ```
 
-2. Abra o arquivo `ficha-personagem.html` no seu navegador
+2. Abra o arquivo `index.html` no seu navegador
 
 3. Preencha os campos da ficha
 
@@ -104,4 +104,3 @@ No `@media print`, modifique as propriedades CSS conforme necessário.
 [Flaticon](https://www.flaticon.com/) - Ícones utilizados
 
 Se este projeto te ajudou, não esqueça de dar uma estrela!
-```
